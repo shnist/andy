@@ -15,18 +15,28 @@ function shoppingList () {
 }
 
 function shoppingListLink (scope, element) {
-  scope.shoppingList = [];
+  scope.shoppingList = [{value: '3 apples', editMode: false}];
+  scope.editMode = false;
 
   scope.addShoppingListItem = function () {
-    scope.shoppingList.push(scope.itemInput);
+    var shoppingItem = {
+      editMode: false,
+      value: scope.itemInput
+    };
+
+    scope.shoppingList.push(shoppingItem);
     scope.itemInput = '';
-  }
+  };
 
   scope.clearShoppingList = function () {
     scope.shoppingList = [];
-  }
+  };
 
-  scope.editItem = function () {
-    console.log('edit item');
-  }
+  scope.editItem = function (item) {
+    item.editMode = true;
+  };
+
+  scope.closeEditMode = function (item) {
+    item.editMode = false;
+  };
 }

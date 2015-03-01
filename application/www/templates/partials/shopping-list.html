@@ -14,13 +14,27 @@
     </div>
   </form>
   <ul class="list">
-    <li class="item item-checkbox" ng-repeat="item in shoppingList" on-hold="editItem()">
-      <label class="checkbox">
-        <input type="checkbox">
-      </label>
-      <span>
-        {{item}}
-      </span>
+    <li ng-repeat="item in shoppingList" on-hold="editItem(item)">
+      <div class="item item-checkbox">
+        <label class="checkbox">
+          <input type="checkbox">
+        </label>
+        <span>
+          {{item.value}}
+        </span>
+      </div>
+      <div class="item row" ng-show="item.editMode">
+        <span class="col">Quantity</span>
+        <input class="col" type="number" value="3">
+        <label class="item-select col col-50">
+          <select>
+            <option selected>Pieces</option>
+            <option>Kilograms</option>
+            <option>Grams</option>
+          </select>
+        </label>
+        <button type="button" ng-click="closeEditMode(item)" class="button button-clear icon ion-close-circled"></button>
+      </div>
     </li>
   </ul>
 </div>

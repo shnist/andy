@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('andy', ['ionic'])
+angular.module('andy', ['ionic', 'andy.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -17,3 +17,80 @@ angular.module('andy', ['ionic'])
     }
   });
 })
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'AppCtrl'
+    })
+
+    .state('app.cards', {
+      url: '/cards',
+      views: {
+        'content': {
+          templateUrl: 'templates/home.html'
+        }
+      }
+    })
+
+    .state('app.my-account', {
+      url: '/my-account',
+      views: {
+        'content': {
+          templateUrl: 'templates/my_account.html'
+        }
+      }
+    })
+
+    .state('app.about-andy', {
+      url: '/about-andy',
+      views: {
+        'content': {
+          templateUrl: 'templates/about_andy.html'
+        }
+      }
+    })
+
+    .state('app.improve-andy', {
+      url: '/improve-andy',
+      views: {
+        'content': {
+          templateUrl: 'templates/improve_andy.html'
+        }
+      }
+    })
+
+    .state('app.terms-of-service', {
+      url: '/terms-of-service',
+      views: {
+        'content': {
+          templateUrl: 'templates/terms.html'
+        }
+      }
+    })
+
+    .state('app.privacy-policy', {
+      url: '/privacy-policy',
+      views: {
+        'content': {
+          templateUrl: 'templates/privacy_policy.html'
+        }
+      }
+    })
+
+    .state('app.contact', {
+      url: '/contact',
+      views: {
+        'content': {
+          templateUrl: 'templates/contact.html'
+        }
+      }
+    })
+
+
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/app/cards');
+});

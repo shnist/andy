@@ -40,7 +40,7 @@ angular.module('andy', ['ionic', 'andy.controllers'])
       url: '/my-account',
       views: {
         'content': {
-          templateUrl: 'templates/my_account.html'
+          templateUrl: 'templates/my-account.html'
         }
       }
     })
@@ -49,7 +49,7 @@ angular.module('andy', ['ionic', 'andy.controllers'])
       url: '/about-andy',
       views: {
         'content': {
-          templateUrl: 'templates/about_andy.html'
+          templateUrl: 'templates/about-andy.html'
         }
       }
     })
@@ -58,7 +58,7 @@ angular.module('andy', ['ionic', 'andy.controllers'])
       url: '/improve-andy',
       views: {
         'content': {
-          templateUrl: 'templates/improve_andy.html'
+          templateUrl: 'templates/improve-andy.html'
         }
       }
     })
@@ -76,7 +76,7 @@ angular.module('andy', ['ionic', 'andy.controllers'])
       url: '/privacy-policy',
       views: {
         'content': {
-          templateUrl: 'templates/privacy_policy.html'
+          templateUrl: 'templates/privacy-policy.html'
         }
       }
     })

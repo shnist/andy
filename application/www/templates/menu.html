@@ -1,0 +1,39 @@
+<ion-side-menus>
+  <!-- center content -->
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="content"></ion-nav-view>
+  </ion-side-menu-content>
+  <!-- side menu -->
+  <ion-side-menu side="left">
+    <ion-content>
+      <div class="item item-thumbnail-left">
+        <img src="img/profile_pierre.png" alt="Your profile picture">
+        <h1>Pierre</h1>
+        <p>London</p>
+        <button class="button button-light">Settings</button>
+      </div>
+      <nav class="list">
+          <a href="#/app/my-account" menu-close class="item">My Account</a>
+          <a href="#/app/cards" menu-close class="item item-borderless">My Cards</a>
+          <a href="#/app/about-andy" menu-close class="item item-borderless">About Andy</a>
+          <hr>
+          <a href="#/app/improve-andy" menu-close class="item item-borderless">Help us improve Andy!</a>
+          <a href="#/app/terms-of-service" menu-close class="item item-borderless">Terms of Service</a>
+          <a href="#/app/privacy-policy" menu-close class="item item-borderless">Privacy Policy</a>
+          <a href="#/app/contact" menu-close class="item item-borderless">Contact Us</a>
+      </nav>
+      <footer class="padding">
+        <p>Proudly powered by <img src="img/mountain.png" alt="Mountain"></p>
+      </footer>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

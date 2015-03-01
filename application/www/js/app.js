@@ -90,6 +90,14 @@ angular.module('andy', ['ionic', 'andy.controllers'])
       }
     })
 
+    .state('app.settings', {
+      url: '/settings',
+      views: {
+        'content': {
+          templateUrl: 'templates/settings.html'
+        }
+      }
+    })
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/cards');

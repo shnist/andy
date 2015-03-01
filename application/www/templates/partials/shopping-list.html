@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="item item-divider">
+    Shopping list
+  </div>
+  <form class="list" ng-submit="addShoppingListItem()">
+    <div class="item item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-plus-circled placeholder-icon"></i>
+        <input type="text" placeholder="Add a new item" ng-model="itemInput">
+      </label>
+      <button class="button button-small" type="button" ng-click="clearShoppingList()">
+        Clear list
+      </button>
+    </div>
+  </form>
+  <ul class="list">
+    <li class="item item-checkbox" ng-repeat="item in shoppingList" on-hold="editItem()">
+      <label class="checkbox">
+        <input type="checkbox">
+      </label>
+      <span>
+        {{item}}
+      </span>
+    </li>
+  </ul>
+</div>

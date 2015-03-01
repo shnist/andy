@@ -23,7 +23,7 @@ function shoppingListLink (scope, element) {
   }
 
   scope.clearShoppingList = function () {
-    console.log('clear shopping list');
+    scope.shoppingList = [];
   }
 
   scope.editItem = function () {

@@ -106,5 +106,5 @@ angular.module('andy', ['ionic', 'ngCordova', 'andy.controllers'])
     })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/cards');
+  $urlRouterProvider.otherwise('/app/home');
 });

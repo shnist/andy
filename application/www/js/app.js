@@ -33,11 +33,20 @@ angular.module('andy', ['ionic', 'ngCordova', 'andy.controllers'])
       controller: 'AppCtrl'
     })
 
+    .state('app.home', {
+      url: '/home',
+      views: {
+        'content': {
+          templateUrl: 'templates/home.html'
+        }
+      }
+    })
+
     .state('app.cards', {
       url: '/cards',
       views: {
         'content': {
-          templateUrl: 'templates/home.html'
+          templateUrl: 'templates/cards.html'
         }
       }
     })

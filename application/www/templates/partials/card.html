@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="flipper">
+    <div class="front">
+      <header class="item item-divider item-icon-left item-button-right">
+        <i class="icon ion-cash"></i>
+        <div class="item-content">
+          <h2>The header</h2>
+          <button ng-click="flipToBack();" type="button" class="button button-icon ion-gear-a icon"></button>
+        </div>
+      </header>
+      <section class="item item-text-wrap">
+        This is the module content
+      </section>
+      <footer class="item item-divider">
+        This is the footer which may act as a status
+      </footer>
+    </div>
+    <div class="back">
+      <header class="item item-divider item-button-right">
+        <div class="item-content">
+          The settings at the back
+          <button ng-click="flipToFront();" type="button" class="button button-icon ion-close-circled icon"></button>
+        </div>
+      </header>
+      <section class="item item-text-wrap">
+        Some settings go here
+      </section>
+    </div>
+  </div>
+</div>

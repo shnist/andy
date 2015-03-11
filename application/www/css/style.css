@@ -11,7 +11,7 @@
 .front,
 .back {
   width: 100%;
-  min-height: 200px;
+  height: 200px;
 }
 /* flip speed goes here */
 .flipper {
@@ -22,13 +22,13 @@
   position: relative;
 }
 /* hide back of pane during swap */
-.front, .back {
+.front,
+.back {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
 }
 /* front pane, placed above back */
 .front {

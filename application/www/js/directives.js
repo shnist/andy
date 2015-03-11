@@ -10,13 +10,9 @@ function andyCard () {
       link: link
   };
 
-  function link (scope, element) {
-    scope.flipToBack = function () {
-      element.addClass('flip');
-    }
-
-    scope.flipToFront = function () {
-      element.removeClass('flip');
+  function link (scope) {
+    scope.toggleFlip = function () {
+      document.querySelector('.flip-wrapper').classList.toggle('flip');
     }
   }
 

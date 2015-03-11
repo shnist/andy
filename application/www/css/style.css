@@ -1,13 +1,13 @@
 /* entire container, keeps perspective */
-.card {
+.flip-wrapper {
   perspective: 1000;
   -webkit-perspective: 1000;
 }
-.card.flip .flipper {
+.flip-wrapper.flip .flipper {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
 }
-.card,
+.flip-wrapper,
 .front,
 .back {
   width: 100%;
@@ -28,6 +28,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
 }
 /* front pane, placed above back */
 .front {

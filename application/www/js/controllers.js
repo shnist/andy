@@ -12,6 +12,18 @@ function AppCtrl ($scope, $state) {
       $state.go('login');
     });
   }
+
+  $scope.fbRevokePermissions = function () {
+    function success () {
+      $state.go('login');
+    }
+
+    function error (error) {
+      alert('An error has occurred', error);
+    }
+
+    openFB.revokePermissions(success, error);
+  }
 }
 
 // Login Controller

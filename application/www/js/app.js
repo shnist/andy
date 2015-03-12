@@ -25,12 +25,21 @@ angular.module('andy', ['ionic', 'ngCordova', 'andy.controllers', 'andy.directiv
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+  // initialise facebook api
+  openFB.init({appId: '801634389905442'});
+
   $stateProvider
     .state('app', {
       url: '/app',
       abstract: true,
       templateUrl: 'templates/menu.html',
       controller: 'AppCtrl'
+    })
+
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
     })
 
     .state('app.home', {
@@ -106,5 +115,5 @@ angular.module('andy', ['ionic', 'ngCordova', 'andy.controllers', 'andy.directiv
     })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/login');
 });

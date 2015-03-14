@@ -34,13 +34,18 @@ function shoppingList () {
       element[0].querySelector('.flip-wrapper').classList.toggle('flip');
     }
 
-    scope.shoppingList = [{quantity: 3, product: 'apples', editMode: false}];
+    scope.shoppingList = [];
     scope.editMode = false;
 
+    var quantityRegex = /(\d+)\s*(\D+)/;
+
     scope.addShoppingListItem = function () {
+      var quantity = extractQuantity(scope.itemInput);
+      var product = extractProduct(scope.itemInput);
       var shoppingItem = {
         editMode: false,
-        product: scope.itemInput
+        product: product,
+        quantity: quantity
       };
 
       scope.shoppingList.push(shoppingItem);
@@ -62,6 +67,14 @@ function shoppingList () {
     scope.closeEditMode = function (item) {
       item.editMode = false;
     };
+
+    function extractQuantity(string) {
+      return parseInt(string.match(quantityRegex)[1], 10);
+    }
+
+    function extractProduct(string) {
+      return string.match(quantityRegex)[2];
+    }
   }
 
   return directive;

@@ -14,13 +14,13 @@
               <input type="text" placeholder="Add a new item" ng-model="itemInput">
             </label>
             <button class="button button-small" type="button" ng-click="clearShoppingList()">
-              Clear list
+              Clear
             </button>
           </div>
         </form>
         <ul class="list">
-          <li class="item" ng-repeat="item in shoppingList">
-            <div class="row">
+          <li ng-repeat="item in shoppingList">
+            <div class="row item">
               <div class="col">
                 <div class="item item-checkbox">
                   <label class="checkbox">
@@ -34,15 +34,17 @@
               <div class="col">
                 <input ng-click="editItem(item);" ng-model="item.product" type="text" value="{{item.product}}">
               </div>
+              <div class="col">
+                <button type="button" ng-click="clearItem($index)" class="button button-clear icon ion-close-circled"></button>
+              </div>
             </div>
             <div class="item row" ng-show="item.editMode">
               <span class="col">Quantity</span>
               <input class="col" type="number" ng-model="item.quantity" value="{{item.quantity}}">
-              <button type="button" ng-click="clearItem($index)" class="button button-clear icon ion-close-circled"></button>
+              <button type="button" ng-click="closeEditMode(item);" class="button button-clear icon ion-ios-close-empty"></button>
             </div>
           </li>
         </ul>
-        {{shoppingList[0]}}
       </div>
       <div class="back">
         <div class="item item-text-wrap">

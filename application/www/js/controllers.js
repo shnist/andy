@@ -1,5 +1,4 @@
 angular.module('andy.controllers', [])
-
 .controller('AppCtrl', AppCtrl)
 .controller('LoginCtrl', LoginCtrl);
 

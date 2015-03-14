@@ -1,40 +1,71 @@
 <div class="card">
-  <div class="item item-divider">
-    Shopping list
-  </div>
-  <form class="list" ng-submit="addShoppingListItem()">
-    <div class="item item-input-inset">
-      <label class="item-input-wrapper">
-        <i class="icon ion-plus-circled placeholder-icon"></i>
-        <input type="text" placeholder="Add a new item" ng-model="itemInput">
-      </label>
-      <button class="button button-small" type="button" ng-click="clearShoppingList()">
-        Clear list
-      </button>
+  <header class="item item-avatar item-button-right">
+    <img src="img/avatar.png" alt="avatar">
+    <h2>Shopping List</h2>
+    <button ng-click="toggleFlip();" type="button" class="button button-icon ion-arrow-swap icon"></button>
+  </header>
+  <div class="flip-wrapper">
+    <div class="flipper">
+      <div class="front">
+        <form class="list" ng-submit="addShoppingListItem()">
+          <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <i class="icon ion-plus-circled placeholder-icon"></i>
+              <input type="text" placeholder="Add a new item" ng-model="itemInput">
+            </label>
+            <button class="button button-small" type="button" ng-click="clearShoppingList()">
+              Clear list
+            </button>
+          </div>
+        </form>
+        <ul class="list">
+          <li class="item" ng-repeat="item in shoppingList">
+            <div class="row">
+              <div class="col">
+                <div class="item item-checkbox">
+                  <label class="checkbox">
+                    <input type="checkbox" ng-model="item.checked">
+                  </label>
+                </div>
+              </div>
+              <div class="col">
+                <span>{{item.quantity}}</span>
+              </div>
+              <div class="col">
+                <input ng-click="editItem(item);" ng-model="item.product" type="text" value="{{item.product}}">
+              </div>
+            </div>
+            <div class="item row" ng-show="item.editMode">
+              <span class="col">Quantity</span>
+              <input class="col" type="number" ng-model="item.quantity" value="{{item.quantity}}">
+              <button type="button" ng-click="clearItem($index)" class="button button-clear icon ion-close-circled"></button>
+            </div>
+          </li>
+        </ul>
+        {{shoppingList[0]}}
+      </div>
+      <div class="back">
+        <div class="item item-text-wrap">
+          <h3>Settings</h3>
+          <ul class="list">
+              <li class="item item-icon-left">
+                <i class="icon ion-wifi"></i>
+                Item One
+              </li>
+              <li class="item item-icon-left">
+                <i class="icon ion-wifi"></i>
+                Item Two
+              </li>
+              <li class="item item-icon-left">
+                <i class="icon ion-wifi"></i>
+                Item Three
+              </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </form>
-  <ul class="list">
-    <li ng-repeat="item in shoppingList" on-hold="editItem(item)">
-      <div class="item item-checkbox">
-        <label class="checkbox">
-          <input type="checkbox">
-        </label>
-        <span>
-          {{item.value}}
-        </span>
-      </div>
-      <div class="item row" ng-show="item.editMode">
-        <span class="col">Quantity</span>
-        <input class="col" type="number" value="3">
-        <label class="item-select col col-50">
-          <select>
-            <option selected>Pieces</option>
-            <option>Kilograms</option>
-            <option>Grams</option>
-          </select>
-        </label>
-        <button type="button" ng-click="closeEditMode(item)" class="button button-clear icon ion-close-circled"></button>
-      </div>
-    </li>
-  </ul>
+  </div>
+  <footer class="item item-divider">
+    This is the footer which may act as a status
+  </footer>
 </div>

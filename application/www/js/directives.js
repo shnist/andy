@@ -11,9 +11,9 @@ function andyCard () {
       link: link
   };
 
-  function link (scope) {
+  function link (scope, element) {
     scope.toggleFlip = function () {
-      document.querySelector('.flip-wrapper').classList.toggle('flip');
+      element[0].querySelector('.flip-wrapper').classList.toggle('flip');
     }
   }
 
@@ -30,13 +30,17 @@ function shoppingList () {
   };
 
   function shoppingListLink (scope, element) {
-    scope.shoppingList = [{value: '3 apples', editMode: false}];
+    scope.toggleFlip = function () {
+      element[0].querySelector('.flip-wrapper').classList.toggle('flip');
+    }
+
+    scope.shoppingList = [{quantity: 3, product: 'apples', editMode: false}];
     scope.editMode = false;
 
     scope.addShoppingListItem = function () {
       var shoppingItem = {
         editMode: false,
-        value: scope.itemInput
+        product: scope.itemInput
       };
 
       scope.shoppingList.push(shoppingItem);
@@ -46,6 +50,10 @@ function shoppingList () {
     scope.clearShoppingList = function () {
       scope.shoppingList = [];
     };
+
+    scope.clearItem = function (index) {
+      scope.shoppingList.pop(index);
+    }
 
     scope.editItem = function (item) {
       item.editMode = true;

@@ -19,10 +19,10 @@
         <img src="img/profile-pierre.png" alt="Your profile picture">
         <h1>Pierre</h1>
         <p>London</p>
-        <a href="#/app/settings" menu-close class="button button-light">Settings</a>
       </div>
       <nav class="list">
-          <a href="#/app/my-account" menu-close class="item">My Account</a>
+          <a href="#/app/home" menu-close class="item">Home</a>
+          <a href="#/app/my-account" menu-close class="item item-borderless">My Account</a>
           <a href="#/app/cards" menu-close class="item item-borderless">My Cards</a>
           <a href="#/app/about-andy" menu-close class="item item-borderless">About Andy</a>
           <hr>
@@ -30,6 +30,10 @@
           <a href="#/app/terms-of-service" menu-close class="item item-borderless">Terms of Service</a>
           <a href="#/app/privacy-policy" menu-close class="item item-borderless">Privacy Policy</a>
           <a href="#/app/contact" menu-close class="item item-borderless">Contact Us</a>
+          <button menu-close class="button button-full icon-right button-assertive button-dark" ng-click="fbLogout()">
+            Logout
+            <i class="icon ion-log-out"></i>
+          </button>
       </nav>
       <footer class="padding">
         <p>Proudly powered by <img src="img/mountain.png" alt="Mountain"></p>

@@ -24,6 +24,11 @@
     <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
   </feature>
 
+  <feature name="Geolocation">
+    <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
+    <param name="ios-package" value="CDVLocation" />
+  </feature>
+
   <platform name="ios">
     <!-- iOS 8.0+ -->
     <!-- iPhone 6 Plus  -->

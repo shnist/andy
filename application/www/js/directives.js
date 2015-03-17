@@ -97,9 +97,9 @@ function andyWeather () {
   return directive;
 }
 
-andyWeatherLocation.$inject = ['geocodingService'];
+andyWeatherLocation.$inject = ['geoLocationService', 'geoCodingService'];
 
-function andyWeatherLocation (geocodingService) {
+function andyWeatherLocation (geoLocationService, geoCodingService) {
   var directive = {
     templateUrl: 'templates/partials/weather-location.html',
     restrict: 'E',
@@ -108,22 +108,27 @@ function andyWeatherLocation (geocodingService) {
   };
 
   function weatherLocationLink (scope) {
-    console.log('weather location link');
     scope.location = 'Finding location...';
 
     var params = {
-      lat:52.5487429714954,
-      lon:-1.81602098644987,
       zoom:18,
       addressdetails:1
     };
 
-    geocodingService.getAddress(params).then(function (data) {
-      scope.location = data.address.city;
-      console.log(scope.location);
+    geoLocationService.getCurrentPosition().then(function (data) {
+      params.lat = data.coords.latitude;
+      params.lon = data.coords.longitude;
+
+      geoCodingService.getAddress(params).then(function (data) {
+        scope.location = data.address.city;
+      }, function (error) {
+        console.log(error);
+      })
+
     }, function (error) {
-      console.log(error);
-    })
+      console.error(error);
+    });
+
   }
 
   return directive;

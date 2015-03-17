@@ -1,14 +1,15 @@
 angular.module('andy.services', ['ngResource'])
 .service('geoCodingService', geoCoding)
-.service('geoLocationService', geoLocation);
+.service('geoLocationService', geoLocation)
+.service('weatherService', weather);
 
 geoCoding.$inject = ['$resource'];
 
 function geoCoding ($resource) {
-  var apiURl = 'http://nominatim.openstreetmap.org/reverse';
+  var apiUrl = 'http://nominatim.openstreetmap.org/reverse';
   var service = {};
 
-  service.resource = $resource(apiURl, {
+  service.resource = $resource(apiUrl, {
     format: 'json',
     callback: 'json_callback'
   }, {
@@ -37,6 +38,26 @@ function geoLocation ($q) {
         reject(error);
       });
     });
+  }
+
+  return service;
+}
+
+weather.$inject = ['$resource'];
+function weather ($resource) {
+  var apiUrl = 'http://api.openweathermap.org/data/2.5/weather';
+  var service = {};
+
+  service.resource = $resource(apiUrl, {
+    units: 'metric'
+  }, {
+    getWeather: {
+      method: 'GET'
+    }
+  });
+
+  service.getWeather = function (data) {
+    return this.resource.getWeather(data).$promise;
   }
 
   return service;

@@ -81,8 +81,8 @@ function shoppingList () {
   return directive;
 }
 
-andyWeather.$inject = ['geoLocationService', 'geoCodingService'];
-function andyWeather (geoLocationService, geoCodingService) {
+andyWeather.$inject = ['geoLocationService', 'geoCodingService', 'weatherService'];
+function andyWeather (geoLocationService, geoCodingService, weatherService) {
   var directive = {
     templateUrl: 'templates/partials/weather.html',
     restrict: 'E',
@@ -92,18 +92,32 @@ function andyWeather (geoLocationService, geoCodingService) {
 
   function weatherLink (scope) {
     scope.location = 'Finding location...';
+    scope.weather = 'Thinking...';
+    scope.temperature = '';
 
-    var params = {
+    var geoCodingParams = {
       zoom:18,
       addressdetails:1
     };
 
     geoLocationService.getCurrentPosition().then(function (data) {
-      params.lat = data.coords.latitude;
-      params.lon = data.coords.longitude;
+      geoCodingParams.lat = data.coords.latitude;
+      geoCodingParams.lon = data.coords.longitude;
 
-      geoCodingService.getAddress(params).then(function (data) {
+      geoCodingService.getAddress(geoCodingParams).then(function (data) {
         scope.location = data.address.city;
+      }, function (error) {
+        console.log(error);
+      });
+
+      var weatherParams = {
+        lat: data.coords.latitude,
+        lon: data.coords.longitude
+      };
+
+      weatherService.getWeather(weatherParams).then(function (data) {
+        scope.weather = data.weather[0].description;
+        scope.temperature = data.main.temp;
       }, function (error) {
         console.log(error);
       });

@@ -1,6 +1,8 @@
 angular.module('andy.directives', [])
 
 .directive('andyShoppingList', shoppingList)
+.directive('andyWeather', andyWeather)
+.directive('andyWeatherLocation', andyWeatherLocation)
 .directive('andyCard', andyCard);
 
 function andyCard () {
@@ -75,6 +77,53 @@ function shoppingList () {
     function extractProduct(string) {
       return string.match(quantityRegex)[2];
     }
+  }
+
+  return directive;
+}
+
+function andyWeather () {
+  var directive = {
+    templateUrl: 'templates/partials/weather.html',
+    restrict: 'E',
+    replace: true,
+    link: weatherLink
+  };
+
+  function weatherLink () {
+    console.log('Weather');
+  }
+
+  return directive;
+}
+
+andyWeatherLocation.$inject = ['geocodingService'];
+
+function andyWeatherLocation (geocodingService) {
+  var directive = {
+    templateUrl: 'templates/partials/weather-location.html',
+    restrict: 'E',
+    replace: true,
+    link: weatherLocationLink
+  };
+
+  function weatherLocationLink (scope) {
+    console.log('weather location link');
+    scope.location = 'Finding location...';
+
+    var params = {
+      lat:52.5487429714954,
+      lon:-1.81602098644987,
+      zoom:18,
+      addressdetails:1
+    };
+
+    geocodingService.getAddress(params).then(function (data) {
+      scope.location = data.address.city;
+      console.log(scope.location);
+    }, function (error) {
+      console.log(error);
+    })
   }
 
   return directive;

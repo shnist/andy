@@ -1,0 +1,37 @@
+<div class="card">
+  <header class="item item-avatar item-button-right">
+    <img src="img/avatar.png" alt="avatar">
+    <h2>Weather</h2>
+    <button ng-click="toggleFlip();" type="button" class="button button-icon ion-arrow-swap icon"></button>
+  </header>
+  <div class="flip-wrapper">
+    <div class="flipper">
+      <div class="front">
+        <andy-weather-location></andy-weather-location>
+
+      </div>
+      <div class="back">
+        <div class="item item-text-wrap">
+          <h3>Settings</h3>
+          <ul class="list">
+              <li class="item item-icon-left">
+                <i class="icon ion-wifi"></i>
+                Item One
+              </li>
+              <li class="item item-icon-left">
+                <i class="icon ion-wifi"></i>
+                Item Two
+              </li>
+              <li class="item item-icon-left">
+                <i class="icon ion-wifi"></i>
+                Item Three
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="item item-divider">
+    This is the footer which may act as a status
+  </footer>
+</div>

@@ -39,3 +39,13 @@
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
 }
+
+.card-weather {
+  background: #57cff2;
+}
+.card-weather * {
+  color: #fff;
+}
+.card-weather .item {
+  background: inherit;
+}

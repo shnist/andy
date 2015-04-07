@@ -91,13 +91,17 @@ function andyWeather (geoLocationService, geoCodingService, weatherService) {
   };
 
   function weatherLink (scope) {
+    scope.toggleFlip = function () {
+      element[0].querySelector('.flip-wrapper').classList.toggle('flip');
+    }
+
     scope.location = 'Finding location...';
     scope.weather = 'Thinking...';
     scope.temperature = '';
 
     var geoCodingParams = {
-      zoom:18,
-      addressdetails:1
+      zoom: 18,
+      addressdetails: 1
     };
 
     geoLocationService.getCurrentPosition().then(function (data) {
@@ -116,6 +120,7 @@ function andyWeather (geoLocationService, geoCodingService, weatherService) {
       };
 
       weatherService.getWeather(weatherParams).then(function (data) {
+        console.log(data);
         scope.weather = data.weather[0].description;
         scope.temperature = data.main.temp;
       }, function (error) {

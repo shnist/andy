@@ -3,13 +3,12 @@ angular.module('andy.controllers', [])
 .controller('LoginCtrl', LoginCtrl);
 
 // Application Controller
-AppCtrl.$inject = ['$scope', '$state'];
+AppCtrl.$inject = ['$scope', '$state', 'OpenFB'];
 
-function AppCtrl ($scope, $state) {
+function AppCtrl ($scope, $state, OpenFB) {
   $scope.fbLogout = function () {
-    openFB.logout(function () {
-      $state.go('login');
-    });
+    OpenFB.logout();
+    $state.go('login');
   }
 
   $scope.fbRevokePermissions = function () {
@@ -21,25 +20,22 @@ function AppCtrl ($scope, $state) {
       alert('An error has occurred', error);
     }
 
-    openFB.revokePermissions(success, error);
+    OpenFB.revokePermissions().then(success).catch(error);
   }
 }
 
 // Login Controller
-LoginCtrl.$inject = ['$scope', '$state'];
+LoginCtrl.$inject = ['$scope', '$state', 'OpenFB'];
 
-function LoginCtrl ($scope, $state) {
+function LoginCtrl ($scope, $state, OpenFB) {
   $scope.fbLogin = function () {
-    openFB.login(function(response) {
-      if (response.status === 'connected') {
-        console.log('Facebook login succeeded');
-        $state.go('app.home');
-      } else {
+    OpenFB.login('email')
+      .then(function(response) {
+          console.log('Facebook login succeeded');
+          $state.go('app.home');
+      })
+      .catch(function () {
         alert('Facebook login failed');
-      }
-    },
-    {
-      scope: 'email'
-    });
+      });
   }
 }

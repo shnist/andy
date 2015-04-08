@@ -1,11 +1,10 @@
-// Ionic Starter App
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('andy', ['ionic', 'ngCordova', 'andy.controllers', 'andy.directives'])
+angular.module('andy', ['ionic', 'ngCordova', 'openfb', 'andy.controllers', 'andy.directives'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $window, $state, OpenFB) {
+  // initialise facebook api
+  OpenFB.init('801634389905442', 'http://localhost:8100/oauthcallback.html');
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -14,6 +13,13 @@ angular.module('andy', ['ionic', 'ngCordova', 'andy.controllers', 'andy.directiv
     }
     if(window.StatusBar) {
       StatusBar.styleDefault();
+    }
+  });
+
+  $rootScope.$on('$stateChangeStart', function(event, toState) {
+    if (toState.name !== "login" && !$window.sessionStorage['fbtoken']) {
+      $state.go('login');
+      event.preventDefault();
     }
   });
 })
@@ -25,8 +31,6 @@ angular.module('andy', ['ionic', 'ngCordova', 'andy.controllers', 'andy.directiv
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-  // initialise facebook api
-  openFB.init({appId: '801634389905442'});
 
   $stateProvider
     .state('app', {
@@ -115,5 +119,5 @@ angular.module('andy', ['ionic', 'ngCordova', 'andy.controllers', 'andy.directiv
     })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/app/home');
 });
